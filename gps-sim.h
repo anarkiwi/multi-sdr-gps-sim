@@ -29,7 +29,7 @@
 
 /* SDR device types */
 typedef enum {
-    SDR_NONE = 0, SDR_IQFILE, SDR_HACKRF, SDR_PLUTOSDR
+    SDR_NONE = 0, SDR_IQFILE, SDR_HACKRF, SDR_PLUTOSDR, SDR_UHD
 } sdr_type_t;
 
 /* Target information. */
