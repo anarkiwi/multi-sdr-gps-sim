@@ -1166,7 +1166,7 @@ static int readRinex2(ephem_t eph[][MAX_SAT], ionoutc_t *ionoutc, const char *fn
             tmp[9] = 0;
             replaceExpDesignator(tmp, 9);
             ver = atof(tmp);
-            if (ver > 3.0) {
+            if (ver > 3.1) {
                 gzclose(fp);
                 return -2;
             }
@@ -2857,7 +2857,7 @@ void *gps_thread_ep(void *arg) {
         }
 
         // File writer and Pluto SDR taking the entire IQ buffer at once.
-        if (simulator->sdr_type == SDR_IQFILE || simulator->sdr_type == SDR_PLUTOSDR) {
+        if (simulator->sdr_type == SDR_IQFILE || simulator->sdr_type == SDR_PLUTOSDR || simulator->sdr_type == SDR_UHD) {
             // Enqueue full fifo block
             fifo_enqueue(iq);
             // Get a new one

@@ -1,5 +1,6 @@
 HACKRFSDR ?= no
 PLUTOSDR ?= no
+UHD ?= yes
 
 DIALECT = -std=c11
 CFLAGS += $(DIALECT) -Og -g -W -Wall -D_GNU_SOURCE
@@ -19,6 +20,13 @@ ifeq ($(PLUTOSDR), yes)
     CPPFLAGS += -DENABLE_PLUTOSDR
     CFLAGS += $(shell pkg-config --cflags libiio libad9361)
     LIBS_SDR += $(shell pkg-config --libs libiio libad9361)
+endif
+
+ifeq ($(UHD), yes)
+    SDR_OBJ += sdr_uhd.o
+    CPPFLAGS += -DENABLE_UHD
+    CFLAGS += $(shell pkg-config --cflags uhd)
+    LIBS_SDR += $(shell pkg-config --libs uhd)
 endif
 
 all: gps-sim
