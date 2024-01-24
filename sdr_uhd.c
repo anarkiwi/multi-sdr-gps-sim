@@ -90,6 +90,12 @@ int sdr_uhd_init(simulator_t *simulator) {
        return -1;
     }
 
+    ret = uhd_usrp_set_clock_source(uhd.usrp, "gpsdo", 0);
+    if (ret) {
+       gui_status_wprintw(RED, "uhd_usrp_set_clock_source to gpsdo failed: %d\n", ret);
+       return -1;
+    }
+
     ret = uhd_tx_streamer_make(&uhd.tx_streamer);
     if (ret) {
        gui_status_wprintw(RED, "uhd_tx_streamer_make failed: %d\n", ret);
