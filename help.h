@@ -49,6 +49,9 @@ static struct argp_option options[] = {
 #ifdef ENABLE_PLUTOSDR
     {0, 0, 0, OPTION_DOC, "   plutosdr", 3},
 #endif    
+#ifdef ENABLE_UHD
+    {0, 0, 0, OPTION_DOC, "   uhd", 3},
+#endif
     { 0}
 };
 
