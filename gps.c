@@ -1166,7 +1166,7 @@ static int readRinex2(ephem_t eph[][MAX_SAT], ionoutc_t *ionoutc, const char *fn
             tmp[9] = 0;
             replaceExpDesignator(tmp, 9);
             ver = atof(tmp);
-            if (ver > 3.0) {
+            if (ver > 3.1) {
                 gzclose(fp);
                 return -2;
             }
@@ -2844,7 +2844,7 @@ void *gps_thread_ep(void *arg) {
                 iq->data8[iq->validLength] = iq_buff[isamp] >> 4;
             }
             iq->validLength += 1;
-            if (simulator->sdr_type == SDR_HACKRF) {
+            if (simulator->sdr_type == SDR_HACKRF || simulator->sdr_type == SDR_UHD) {
                 // Fill one fifo block until full
                 if (iq->validLength == HACKRF_TRANSFER_BUFFER_SIZE) {
                     // Enqueue full fifo block
